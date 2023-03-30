@@ -12,6 +12,9 @@ function startGame() {
 
 function playRound(playerChoice) {
     let wins = checkWins();
+    if (wins >= 5) {
+        return;
+    }
 
     const computerChoice = computerSelect()
 
@@ -19,6 +22,8 @@ function playRound(playerChoice) {
     winners.push(winner);
     tallyWins();
     displayRound(playerChoice, computerChoice, winner)
+    wins = checkWins();
+    
 }
 
 function displayRound(playerChoice, computerChoice, winner) {
