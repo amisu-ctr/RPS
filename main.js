@@ -23,15 +23,28 @@ function playRound(playerChoice) {
     tallyWins();
     displayRound(playerChoice, computerChoice, winner)
     wins = checkWins();
+    if(wins == 5) {
+        displayEnd()
+    }
     
+}
+
+function displayEnd() {
+    let playerWins = winners.filter((item) => item == "Player").length;
+    if(playerWins == 5){
+        document.querySelector('.winner').textContent = 'You Won 5 Games, Congrats!'
+    } else {
+        document.querySelector('.winner').textContent = 'Sorry , the computer won 5 times'
+    }
+    document.querySelector('.reset').style.display = 'flex'
 }
 
 function displayRound(playerChoice, computerChoice, winner) {
      document.querySelector('.playerChoice').textContent = `You chose: ${
-        playerChoice.CharAt(0).toUpperCase() + playerChoice. slice(1)
+        playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)
      }`
      document.querySelector('.computerChoice').textContent = `The computer chose: ${
-        computerChoice.CharAt(0).toUpperCase() + computerChoice. slice(1)
+        computerChoice.charAt(0).toUpperCase() + computerChoice. slice(1)
      }`
      displayRoundWinner(winner)
 }
@@ -47,13 +60,13 @@ function displayRoundWinner(winner) {
 } 
 
 function tallyWins() {
-    const pWinCount = winners.filter((item) > item == 'Player').length;
+    const pWinCount = winners.filter((item) => item == 'Player').length;
     const cWincount = winners.filter((item) => item == 'Computer').length;
-    const ties = winners.filter((item) => item == 'Ties').lenth;
+    const ties = winners.filter((item) => item == 'Ties').length;
 
     document.querySelector('.playerScore').textContent = `Score: ${pWinCount}`;
     document.querySelector('.computerScore').textContent = `Score: ${cWincount}`;
-    document.querySelector('.ties').textContent = `Score: ${ties}`
+    document.querySelector('.ties').textContent = `Ties: ${ties}`
 }
 
 function computerSelect() {
@@ -62,7 +75,7 @@ function computerSelect() {
 }
 
 function checkWins() {
-    const pWinCount = winners.filter((item) > item == 'Player').length;
+    const pWinCount = winners.filter((item) => item == 'Player').length;
     const cWincount = winners.filter((item) => item == 'Computer').length;
     return Math.max(pWinCount, cWincount)
 }
@@ -75,14 +88,14 @@ function checkWinner(choice1, choice2) {
     ) {
         return 'Player'
     } else if (choice1 == choice2) {
-        return 'Tie'
+        return 'Ties'
     } else {
         return 'Computer'
     }
 }
 
 function setWins() {
-    const pWinCount = winners.filter((item) > item == 'Player').length;
+    const pWinCount = winners.filter((item) => item == 'Player').length;
     const cWincount = winners.filter((item) => item == 'Computer').length;
     const ties = winners.filter((item) => item == 'Ties').lenth;
 }
