@@ -35,6 +35,9 @@ function playRound(playerChoice) {
     displayRound(playerChoice, computerChoice, winner)
     wins = checkWins();
     if(wins == 5) {
+        //display end results
+        //change the button to visible
+        // change the text to display winner
         displayEnd()
     }
     
@@ -82,7 +85,13 @@ function tallyWins() {
 
 function computerSelect() {
 
-    return choices[Math.floor(Math.random() * choices.length)]
+    const choice = choices[Math.floor(Math.random() * choices.length)]
+
+    document.querySelector(`.${choices}`).classList.add("active")
+    setTimeout(() => {
+        document.querySelector(`${choices}`).classList.remove("active")
+    }, 700)
+    return choice
 }
 
 function checkWins() {
